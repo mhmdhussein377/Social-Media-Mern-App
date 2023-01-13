@@ -1,0 +1,126 @@
+POST http://localhost:8080/api/auth/register 
+Content-Type: application/json
+
+{
+    "username": "kamal377",
+    "email": "kamal377@gmail.com",
+    "password": "kamal123"
+}
+
+
+###
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "kamal377@gmail.com",
+    "password": "kamal123"
+}
+
+
+###
+PUT http://localhost:8080/api/users/63bab62287657199fa36b230
+Content-Type: application/json
+
+{
+    "userId": "63bab62287657199fa36b230",
+    "desc": "hey its my updated description",
+    "city": "Saida",
+    "from": "Palestine",
+    "relationship": 1
+}
+
+
+###
+DELETE http://localhost:8080/api/users/63bab529ea0f6655e7cb1fed
+Content-Type: application/json
+
+{
+    "userId": "63bab529ea0f6655e7cb1fed"
+}
+
+###
+GET http://localhost:8080/api/users/?userId=63bab62287657199fa36b230
+Content-Type: application/json
+
+###
+PUT http://localhost:8080/api/users/63bab62287657199fa36b230/follow
+Content-Type: application/json
+
+{
+    "userId": "63bde5290b4f5cae692e5ea7"
+}
+
+###
+PUT http://localhost:8080/api/users/63babfbda2569e20346f9890/unfollow
+Content-Type: application/json
+
+{
+    "userId": "63bab62287657199fa36b230"
+}
+
+
+
+// Posts
+
+###
+POST http://localhost:8080/api/posts
+Content-Type: application/json
+
+{
+    "userId": "63bab62287657199fa36b230",
+    "desc": "this is last mhmd377's post"
+}
+
+###
+PUT http://localhost:8080/api/posts/63bb2f515ccc94771bf8dc73
+Content-Type: application/json
+
+{
+    "userId": "63bab62287657199fa36b230",
+    "desc": "this is my second post"
+}
+
+###
+DELETE http://localhost:8080/api/posts/63bb2f515ccc94771bf8dc73
+Content-Type: application/json
+
+{
+    "userId": "63bab62287657199fa36b230"
+}
+
+
+###
+PUT http://localhost:8080/api/posts/63bb23236dba3858a14c7fdc/like
+Content-Type: application/json
+
+{
+    "userId": "63bab62287657199fa36b230"
+}
+
+
+###
+GET http://localhost:8080/api/posts/63bb23236dba3858a14c7fdc
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/posts/timeline/all
+Content-Type: application/json
+
+{
+    "userId": "63bab62287657199fa36b230"
+}
+
+
+// upload a file
+###
+# POST http://localhost:8080/api/upload
+# Content-Type: multipart/form-data
+
+# {
+#     "name": "testimonials-bg-1920x1080.jpg"
+# }
+
+###
+GET http://localhost:8080/api/users/friends/63bde5290b4f5cae692e5ea7
+Content-Type: application/json
