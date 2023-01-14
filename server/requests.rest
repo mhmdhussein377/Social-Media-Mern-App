@@ -124,3 +124,19 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/api/users/friends/63bde5290b4f5cae692e5ea7
 Content-Type: application/json
+
+
+
+
+
+
+
+
+
+
+
+
+// get all users
+###
+GET http://localhost:8080/api/users/allUsers
+Content-Type: application/json

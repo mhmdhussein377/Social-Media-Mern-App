@@ -23,6 +23,21 @@ const Rightbar = ({profile, user}) => {
     const {user: currentUser, dispatch} = useContext(AuthContext);
 
     const HomeRightBar = () => {
+
+        const [onlineFriends, setOnlineFriends] = useState([]);
+        const {user} = useContext(AuthContext);
+
+        useEffect(() => {
+            let getOnlineFriends = async () => {
+                const res = await axios.get(`http://localhost:8080/api/users/allUsers`);
+                console.log('Online Friends');
+                setOnlineFriends(res.data.filter(onlineFriend => onlineFriend.username !== user.username));
+            }
+            getOnlineFriends();
+        }, []);
+
+        console.log(onlineFriends);
+
         return (
             <div>
                 <div className="birthdayContainer">
@@ -35,10 +50,10 @@ const Rightbar = ({profile, user}) => {
                     </span>
                 </div>{" "}
                 <img src={AdImage} className="rightbarAd" alt="ad"/>{" "}
-                <h4 className="rightbarTitle">Online Friends</h4>{" "}
+                <h4 className="rightbarTitle">Online Users</h4>{" "}
                 <ul className="rightbarFriendsList">
                     {" "}
-                    {Users.map((user, index) => (<Online {...user} key={index}/>))}{" "}
+                    {onlineFriends.map((user, index) => (<Online {...user} key={index}/>))}{" "}
                 </ul>
             </div>
         );

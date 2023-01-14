@@ -163,6 +163,16 @@ router.get('/friends/:userId', async (req, res) => {
     } catch (error) {
         res.status(500).json(error);
     }
-})
+});
+
+// get all users except the current User
+router.get("/allUsers", async (req, res) => {
+    try {
+        const allUsers = await User.find({});
+        res.status(200).json(allUsers);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
 
 module.exports = router;

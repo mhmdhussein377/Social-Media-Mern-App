@@ -1,18 +1,27 @@
 import React from 'react'
-import { BsDot } from 'react-icons/bs';
+import {BsDot} from 'react-icons/bs';
+import {Link} from 'react-router-dom';
+import DefaultImg from "./../../assets/person/noAvatar.png";
 import "./Online.css";
 
 const Online = ({username, profilePicture}) => {
     return (
-        <li className="rightbarFriendItem">
-            <div className="rightbarImgContainer">
-                <img className="rightbarProfileImg" src={profilePicture} alt="Person"/>
-                <div className="onlineIcon">
-                    <BsDot color="limegreen" className="online" size={55}/>
+        <Link to={`/profile/${username}`}>
+            <li className="rightbarFriendItem">
+                <div className="rightbarImgContainer">
+                    <img
+                        className="rightbarProfileImg"
+                        src={profilePicture
+                        ? `http://localhost/images/${profilePicture}`
+                        : DefaultImg}
+                        alt="Person"/>
+                    <div className="onlineIcon">
+                        <BsDot color="limegreen" className="online" size={55}/>
+                    </div>
                 </div>
-            </div>
-            <span className="onlineFriendName">{username}</span>
-        </li>
+                <span className="onlineFriendName">{username}</span>
+            </li>
+        </Link>
     );
 }
 
