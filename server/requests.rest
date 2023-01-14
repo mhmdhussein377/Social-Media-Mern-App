@@ -140,3 +140,9 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/api/users/allUsers
 Content-Type: application/json
+
+
+// get a post likers
+###
+GET http://localhost:8080/api/posts/post/63c29f6af69ce913464e90ee/likes
+Content-Type: application/json

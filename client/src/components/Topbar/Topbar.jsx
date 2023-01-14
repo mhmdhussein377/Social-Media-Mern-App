@@ -9,7 +9,11 @@ import {AuthContext} from '../../Context/AuthContext';
 
 const Topbar = () => {
 
-    const {user} = useContext(AuthContext);
+    const {user, dispatch} = useContext(AuthContext);
+
+    const handleLogout = () => {
+        dispatch({type: 'LOGOUT'});
+    }
 
     return (
         <div className="topbarContainer">
@@ -46,9 +50,17 @@ const Topbar = () => {
                         <span className="topbarIconBadge">1</span>
                     </div>
                 </div>
-                <Link to={`/profile/${user?.username}`}>
-                    <img src={user?.profilePicture || DefaultImg} alt="" className="topbarImg"/>
-                </Link>
+                <div className="topbarRightEnd">
+                    <div className="logout" onClick={handleLogout}>Log Out</div>
+                    <Link to={`/profile/${user
+                        ?.username}`}>
+                        <img
+                            src={user
+                            ?.profilePicture || DefaultImg}
+                            alt=""
+                            className="topbarImg"/>
+                    </Link>
+                </div>
             </div>
         </div>
     );

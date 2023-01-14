@@ -3,6 +3,7 @@ import {useContext} from 'react';
 import {AuthContext} from '../../Context/AuthContext';
 import {loginCall} from '../../apiCalls';
 import "./Login.css";
+import {Link} from 'react-router-dom';
 
 const Login = () => {
 
@@ -51,11 +52,13 @@ const Login = () => {
                                 : "Log In"}
                         </button>
                         <span className="loginForgot">Forgot Password?</span>
-                        <button className="loginRegisterButton">
-                            {isFetching
-                                ? "Loading"
-                                : "Create a New Account"}
-                        </button>
+                        <Link to="/register">
+                            <div className="loginRegisterButton">
+                                {isFetching
+                                    ? "Loading"
+                                    : "Create a New Account"}
+                            </div>
+                        </Link>
                     </form>
                 </div>
             </div>

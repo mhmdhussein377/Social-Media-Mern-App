@@ -23,13 +23,13 @@
 }
 
 .logo {
+    padding: 10px 20px;
     font-size: 50px;
     font-weight: bold;
     color: #1775ee;
 }
 
 .loginDesc {
-    padding: 10px 20px;
     font-size: 24px;
     max-width: 450px;
 }
@@ -95,4 +95,7 @@
     font-weight: 500;
     font-size: 20px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

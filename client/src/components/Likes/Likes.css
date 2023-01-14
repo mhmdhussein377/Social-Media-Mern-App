@@ -1,0 +1,51 @@
+.likes {
+    flex: 5.5;
+}
+
+.likesWrapper {
+    padding: 0 20px 20px 20px;
+}
+
+.likesTop {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: sticky;
+    top: 50px;
+    background-color: white;
+    width: 100%;
+    height: 70px;
+    z-index: 10;
+}
+
+.likedUsers {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: scroll;
+}
+
+.backIcon {
+    cursor: pointer;
+}
+
+.likedUser {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.likedUsername {
+    font-size: 18px;
+}
+
+.likedUserImg {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}

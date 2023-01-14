@@ -113,6 +113,16 @@
     cursor: pointer;
 }
 
+.topbarRightEnd {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logout {
+    cursor: pointer;
+}
+
 a {
     text-decoration: none;
 }

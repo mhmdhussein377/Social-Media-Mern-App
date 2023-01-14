@@ -10,12 +10,19 @@ import axios from 'axios';
 import DefaultImg from "./../../assets/person/noAvatar.png"
 import {format} from "timeago.js"
 import {Link} from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../../Context/AuthContext';
+import {useContext} from 'react';
+import {AuthContext} from '../../Context/AuthContext';
 
-const Post = ({_id ,desc, img, createdAt, likes, userId}) => {
+const Post = ({
+    _id,
+    desc,
+    img,
+    createdAt,
+    likes,
+    userId
+}) => {
 
-    const { user: currentUser } = useContext(AuthContext);
+    const {user: currentUser} = useContext(AuthContext);
     const [like,
         setLike] = useState(likes.length);
     const [isLiked,
@@ -23,12 +30,12 @@ const Post = ({_id ,desc, img, createdAt, likes, userId}) => {
     const [user,
         setUser] = useState({});
     const {profilePicture, username} = user;
-    
+
     useEffect(() => {
         setIsLiked(likes.includes(currentUser._id));
-    },[likes, currentUser._id]);
+    }, [likes, currentUser._id]);
 
-    const handleLike = async () => {
+    const handleLike = async() => {
         setLike(isLiked
             ? like - 1
             : like + 1);
@@ -74,10 +81,10 @@ const Post = ({_id ,desc, img, createdAt, likes, userId}) => {
                     <div className="postBottomLeft">
                         <img onClick={handleLike} className="likeIcon" src={Like} alt="like"/>
                         <img onClick={handleLike} className="likeIcon" src={Heart} alt="heart"/>
-                        <span className="postLikeCounter">
-                            {like}
-                            people like it
-                        </span>
+                        <Link to={`/post/${_id}/likes`}>
+                            <span className="postLikeCounter">{like}
+                                people like it</span>
+                        </Link>
                     </div>
                     <div className="postBottomRight">
                         <span className="postCommentText">9 comments</span>

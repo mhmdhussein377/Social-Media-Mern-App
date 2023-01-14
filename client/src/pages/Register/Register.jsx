@@ -4,7 +4,7 @@ import {useContext} from 'react';
 import {useEffect} from 'react';
 import {useRef} from 'react';
 import {AuthContext} from '../../Context/AuthContext';
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./Register.css"
 
 const Register = () => {
@@ -53,8 +53,8 @@ const Register = () => {
                             ref={username}
                             required
                             type="text"
-                            placeholder='Username'
-                            className='loginInput'/>
+                            placeholder="Username"
+                            className="loginInput"/>
                         <input
                             ref={email}
                             required
@@ -72,12 +72,14 @@ const Register = () => {
                             ref={confirmPassword}
                             required
                             type="password"
-                            placeholder='Confirm Password'
-                            className='loginInput'/>
-                        <button className="loginButton" type='submit'>Sign Up</button>
-                        <button className="loginRegisterButton">
-                            Log into an Account
+                            placeholder="Confirm Password"
+                            className="loginInput"/>
+                        <button className="loginButton" type="submit">
+                            Sign Up
                         </button>
+                        <Link to="/login">
+                            <div className="loginRegisterButton">Log into an Account</div>
+                        </Link>
                     </form>
                 </div>
             </div>
