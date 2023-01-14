@@ -27,8 +27,7 @@ const Share = () => {
 
         if (file) {
             data = new FormData();
-            // Date.now() +
-            const filename = file.name;
+            const filename = Date.now() + file.name;
             data.append("name", filename);
             data.append("file", file);
             newPost.img = filename;

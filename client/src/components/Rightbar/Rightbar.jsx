@@ -20,7 +20,7 @@ import {AiOutlinePlus, AiOutlineMinus} from "react-icons/ai";
 
 const Rightbar = ({profile, user}) => {
 
-    const {user: currentUser} = useContext(AuthContext);
+    const {user: currentUser, dispatch} = useContext(AuthContext);
 
     const HomeRightBar = () => {
         return (
@@ -46,10 +46,12 @@ const Rightbar = ({profile, user}) => {
 
     const ProfileRightBar = () => {
 
+        const { user: currentUser, dispatch } = useContext(AuthContext);
+
         const [friends,
             setFriends] = useState([]);
         const [followed,
-            setFollowed] = useState(false);
+            setFollowed] = useState(currentUser.following.includes(user?._id));
 
         useEffect(() => {
             setFollowed(currentUser.following.includes(user
@@ -66,15 +68,17 @@ const Rightbar = ({profile, user}) => {
                 }
             };
             getFriends();
-            console.log("friends list")
-        }, [user]);
+            console.log("friends list");
+        }, [user.following]);
 
         let handleFollow = async() => {
             try {
                 if (followed) {
                     await axios.put(`http://localhost:8080/api/users/${user._id}/unfollow`, {userId: currentUser._id});
+                    dispatch({type: "UNFOLLOW", payload: user._id});
                 } else {
                     await axios.put(`http://localhost:8080/api/users/${user._id}/follow`, {userId: currentUser._id});
+                    dispatch({type: "FOLLOW", payload: user._id});
                 }
             } catch (error) {
                 console.log(error);

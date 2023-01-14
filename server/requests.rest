@@ -44,11 +44,11 @@ GET http://localhost:8080/api/users/?userId=63bab62287657199fa36b230
 Content-Type: application/json
 
 ###
-PUT http://localhost:8080/api/users/63bab62287657199fa36b230/follow
+PUT http://localhost:8080/api/users/63babfbda2569e20346f9890/follow
 Content-Type: application/json
 
 {
-    "userId": "63bde5290b4f5cae692e5ea7"
+    "userId": "63be6f4ce174b71d6b79aba5"
 }
 
 ###
@@ -56,7 +56,7 @@ PUT http://localhost:8080/api/users/63babfbda2569e20346f9890/unfollow
 Content-Type: application/json
 
 {
-    "userId": "63bab62287657199fa36b230"
+    "userId": "63bde5290b4f5cae692e5ea7"
 }
 
 
