@@ -87,20 +87,19 @@ const Comments = () => {
                             <div className="commentText">{comment.text}</div>
                         </div>
                     ))}
-
-                    <form className="commentForm" onSubmit={handleAddComment}>
-                        <input
-                            type="text"
-                            value={commentInput}
-                            onChange={handleInputChange}
-                            className="commentInput"
-                            placeholder="Write a comment"/>
-                        <button type="submit" className="commentButton">
-                            <BiSend size={25} color="white"/>
-                        </button>
-                    </form>
                 </div>
             </div>
+            <form className="commentForm" onSubmit={handleAddComment}>
+                <input
+                    type="text"
+                    value={commentInput}
+                    onChange={handleInputChange}
+                    className="commentInput"
+                    placeholder="Write a comment"/>
+                <button type="submit" className="commentButton">
+                    <BiSend size={25} color="white"/>
+                </button>
+            </form>
         </div>
     );
 }

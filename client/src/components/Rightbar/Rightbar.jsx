@@ -33,7 +33,7 @@ const Rightbar = ({profile, user}) => {
         console.log(onlineFriends);
 
         return (
-            <div>
+            <div style={{padding: "0px 10px"}}>
                 <div className="birthdayContainer">
                     <img src={BirthDayImage} className="birthdayImg" alt="gift"/>
                     <span className="birthdayText">

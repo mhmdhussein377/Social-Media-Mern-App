@@ -5,6 +5,11 @@ import DefaultImg from "./../../assets/person/noAvatar.png";
 import "./Online.css";
 
 const Online = ({username, profilePicture}) => {
+
+    console.log("profilePicture")
+    console.log(profilePicture);
+    console.log("ProfilePicture")
+
     return (
         <Link to={`/profile/${username}`}>
             <li className="rightbarFriendItem">
@@ -12,7 +17,7 @@ const Online = ({username, profilePicture}) => {
                     <img
                         className="rightbarProfileImg"
                         src={profilePicture
-                        ? `http://localhost/images/${profilePicture}`
+                        ? `http://localhost:8080/images/${profilePicture}`
                         : DefaultImg}
                         alt="Person"/>
                     <div className="onlineIcon">

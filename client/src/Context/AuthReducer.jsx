@@ -40,6 +40,24 @@ const AuthReducer = (state, action) => {
                 isFetching: false,
                 error: false,
             }
+        case "CHANGE_PP": {
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    profilePicture: action.payload
+                }
+            }
+        }
+        case "CHANGE_CP": {
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    coverPicture: action.payload
+                }
+            }
+        }
         default: 
             return state;
     }

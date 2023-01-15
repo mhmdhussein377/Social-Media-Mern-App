@@ -59,13 +59,17 @@ const Share = ({isEditing, edits}) => {
 
     }
 
+    console.log("ppp")
+    console.log(user)
+    console.log("ppp")
+
     return (
         <div className="share">
             <div className="shareWrapper">
                 <div className="shareTop">
                     <img
                         className="shareProfileImg"
-                        src={user.profilePicture || DefaultImg}
+                        src={user?.profilePicture ? `http://localhost:8080/images/${user?.profilePicture}` : DefaultImg}
                         alt="/"/>
                     <input
                         ref={desc}

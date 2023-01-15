@@ -58,7 +58,7 @@ const Topbar = () => {
                         ?.username}`}>
                         <img
                             src={user
-                            ?.profilePicture || DefaultImg}
+                            ?.profilePicture ? `http://localhost:8080/images/${user?.profilePicture}` : DefaultImg}
                             alt=""
                             className="topbarImg"/>
                     </Link>

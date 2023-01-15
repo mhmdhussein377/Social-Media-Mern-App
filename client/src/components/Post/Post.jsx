@@ -81,13 +81,15 @@ const Post = ({
         }
     }
 
+    console.log(profilePicture)
+
     return (
         <div className="post">
             <div className="postWrapper">
                 <div className="postTop">
                     <div className="postTopLeft">
                         <Link to={`/profile/${username}`}>
-                            <img className="postProfileImg" src={profilePicture || DefaultImg} alt="/"/>
+                            <img className="postProfileImg" src={profilePicture ? `http://localhost:8080/images/${profilePicture}` : DefaultImg} alt="/"/>
                         </Link>
                         <Link to={`/profile/${username}`}>
                             <span className="postUsername">{username}</span>
@@ -125,7 +127,7 @@ const Post = ({
                 </div>
                 <div className="postCenter">
                     {desc && <span className="postTitle">{desc}</span>}
-                    <img src={`http://localhost:8080/images/${img}`} alt="" className="postImg"/>
+                    {img && <img src={`http://localhost:8080/images/${img}`} alt="" className="postImg"/>}
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">
