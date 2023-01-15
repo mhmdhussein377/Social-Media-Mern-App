@@ -17,13 +17,21 @@ const Feed = ({username}) => {
         const getTimeline = async() => {
             const res = username
                 ? await axios.get(`http://localhost:8080/api/posts/profile/${username}`)
-                : await axios.get(`http://localhost:8080/api/posts/timeline/${user._id}`);
+                : await axios.get(`http://localhost:8080/api/posts/timeline/${user?._id}`);
             setPosts(res.data.sort((p1, p2) => {
                 return new Date(p2.createdAt) - new Date(p1.createdAt)
             }));
         };
         getTimeline();
-    }, [username, user._id]);
+    }, [username, user?._id]);
+
+    // const [isEditing, setIsEditing] = useState(false);
+    // const [edits, setEdits] = useState({});
+
+    // const handleEdit = (editings) => {
+    //     setIsEditing(true);
+    //     setEdits(editings);
+    // }
 
     return (
         <div className="feed">

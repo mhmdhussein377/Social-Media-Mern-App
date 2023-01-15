@@ -2,7 +2,7 @@ import React from 'react';
 import {AiOutlineSearch, AiFillBell} from "react-icons/ai";
 import {BsFillPersonFill, BsFillChatLeftDotsFill} from "react-icons/bs";
 import DefaultImg from "./../../assets/person/noAvatar.png"
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import "./Topbar.css";
 import {useContext} from 'react';
 import {AuthContext} from '../../Context/AuthContext';
@@ -10,8 +10,10 @@ import {AuthContext} from '../../Context/AuthContext';
 const Topbar = () => {
 
     const {user, dispatch} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleLogout = () => {
+        navigate("/register");
         dispatch({type: 'LOGOUT'});
     }
 

@@ -20,7 +20,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         setFriends(user.following);
-    }, [user.following]);
+    }, [user?.following]);
 
     console.log("friends");
     console.log(friends);

@@ -1,4 +1,5 @@
 const express = require("express");
+const { join } = require("path");
 const Post = require("../models/Post");
 const User = require("../models/User");
 const router = express.Router();
@@ -149,12 +150,78 @@ router.get("/post/:postId/likes", async(req, res) => {
         const postLikers = await Promise.all(post.likes.map((like) => {
             return User.findById(like);
         }));
-        res.status(200).json(postLikers);
+        res
+            .status(200)
+            .json(postLikers);
     } catch (error) {
         res
             .status(500)
             .json(error);
     }
-})
+});
+
+// get users comments of a post
+// router.get("/post/:postId/comments/users", async(req, res) => {
+//     try {
+//         const post = await Post.findById(req.params.postId);
+//         const users = await Promise.all(post.comments.map(comment => {
+//             return User.findById(comment.userId);
+//         }))
+//         res
+//             .status(200)
+//             .json(users);
+//     } catch (error) {
+//         res
+//             .status(500)
+//             .json(error);
+//     }
+// });
+
+// get comments of a post
+router.get("/post/:postId/comments", async(req, res) => {
+    try {
+        const post = await Post.findById(req.params.postId);
+        const comments = post.comments;
+        const users = await Promise.all(comments.map(comment => {
+            return User.findById(comment.userId)
+        }));
+        const finalResult = [];
+        comments.map(comment => {
+            finalResult.push({
+                text: comment.text,
+                createdAt: comment.createdAt,
+            })
+        });
+        users.map((user, index) => {
+            finalResult[index].username = user.username;
+            finalResult[index].profilePicture = user.profilePicture;
+        });
+        res.status(200).json(finalResult);
+    } catch (error) {
+        res
+            .status(500)
+            .json(error);
+    }
+});
+
+
+// add a comment to a post
+router.put("/post/:postId/comment", async(req, res) => {
+    try {
+        const post = await Post.findById(req.params.postId);
+        await post.updateOne({
+            $push: {
+                comments: req.body
+            }
+        })
+        res
+            .status(200)
+            .json("the comment has been added");
+    } catch (error) {
+        res
+            .status(500)
+            .json(error);
+    }
+});
 
 module.exports = router;

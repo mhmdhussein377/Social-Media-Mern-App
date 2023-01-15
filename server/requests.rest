@@ -146,3 +146,24 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/api/posts/post/63c29f6af69ce913464e90ee/likes
 Content-Type: application/json
+
+
+// add a comment to a post
+###
+PUT http://localhost:8080/api/posts/post/63c32e105ba38249252fe5ad/comment
+Content-Type: application/json
+
+{
+    "userId": "63babfbda2569e20346f9890",
+    "text": "this is my third comment"
+}
+
+/// get the comments of a post
+###
+GET http://localhost:8080/api/posts/post/63c32e105ba38249252fe5ad/comments
+Content-Type: application/json
+
+// get users of a comment of a post
+###
+GET http://localhost:8080/api/posts/post/63c32e105ba38249252fe5ad/comments/users
+Content-Type: application/json

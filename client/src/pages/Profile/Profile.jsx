@@ -35,12 +35,12 @@ const Profile = () => {
                 <div className="profileRight">
                     <div className="profileRightTop">
                         <div className="profileCover">
-                            <img className="profileCoverImg" src={coverPicture ? `http://localhost:8080/images/${coverPicture}` : DefaultCover} alt="coverImg"/>
-                            <img className='profileImg' src={profilePicture ? `http://localhost:8080/images/${profilePicture}` : DefaultImg} alt="profileImg"/>
+                            <img className="profileCoverImg" src={user?.coverPicture ? `http://localhost:8080/images/${user?.coverPicture}` : DefaultCover} alt="coverImg"/>
+                            <img className='profileImg' src={user?.profilePicture ? `http://localhost:8080/images/${user?.profilePicture}` : DefaultImg} alt="profileImg"/>
                         </div>
                         <div className="profileInfo">
-                            <h4 className='profileInfoName'>{user.username}</h4>
-                            <span className="profileInfoDesc">{user.desc}</span>
+                            <h4 className='profileInfoName'>{user?.username}</h4>
+                            <span className="profileInfoDesc">{user?.desc}</span>
                         </div>
                     </div>
                     <div className="profileRightBottom">

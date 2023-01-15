@@ -19,7 +19,8 @@ const Post = ({
     img,
     createdAt,
     likes,
-    userId
+    userId,
+    comments
 }) => {
 
     const {user: currentUser} = useContext(AuthContext);
@@ -56,6 +57,30 @@ const Post = ({
         console.log(img)
     }, [userId]);
 
+    const [isDropdownAllowed,
+        setIsDropdownAllowed] = useState(false);
+
+    useEffect(() => {
+        if (userId === currentUser._id) {
+            setIsDropdownAllowed(true);
+        }
+    }, []);
+
+    const handleDelete = async() => {
+        try {
+            await axios.delete(`http://localhost:8080/api/posts/${_id}`, {
+                data: {
+                    userId: currentUser._id
+                }
+            });
+            window
+                .location
+                .reload();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="post">
             <div className="postWrapper">
@@ -70,7 +95,32 @@ const Post = ({
                         <span className="postDate">{format(createdAt)}</span>
                     </div>
                     <div className="postTopRight">
-                        <BiDotsVerticalRounded size={30}/>
+                        {isDropdownAllowed && (
+                            <div class="dropdown">
+                                <button
+                                    class="btn"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    style={{
+                                    border: "none"
+                                }}>
+                                    <BiDotsVerticalRounded size={30}/>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li onClick={handleDelete}>
+                                        <a class="dropdown-item" href="#">
+                                            Delete
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Edit
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className="postCenter">
@@ -82,13 +132,20 @@ const Post = ({
                         <img onClick={handleLike} className="likeIcon" src={Like} alt="like"/>
                         <img onClick={handleLike} className="likeIcon" src={Heart} alt="heart"/>
                         <Link to={`/post/${_id}/likes`}>
-                            <span className="postLikeCounter">{like}
-                                people like it</span>
+                            <span className="postLikeCounter">
+                                {like}
+                                people like it
+                            </span>
                         </Link>
                     </div>
-                    <div className="postBottomRight">
-                        <span className="postCommentText">9 comments</span>
-                    </div>
+                    <Link to={`/post/${_id}/comments`}>
+                        <div className="postBottomRight">
+                            <span className="postCommentText">
+                                {comments.length}
+                                comments
+                            </span>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>

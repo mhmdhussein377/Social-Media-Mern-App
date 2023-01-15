@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useEffect} from 'react';
 import {BiArrowBack} from "react-icons/bi";
-import UserImg from "./../../assets/person/1.jpeg"
+import UserImg from "./../../assets/person/noAvatar.png"
 import {useParams, useNavigate, Link} from 'react-router-dom';
 import "./Likes.css";
 import axios from 'axios';

@@ -7,9 +7,9 @@ import {useContext} from 'react';
 import {AuthContext} from '../../Context/AuthContext';
 import DefaultImg from "./../../assets/person/noAvatar.png";
 import axios from "axios";
-import { MdOutlineCancel } from "react-icons/md";
+import {MdOutlineCancel} from "react-icons/md";
 
-const Share = () => {
+const Share = ({isEditing, edits}) => {
 
     const {user} = useContext(AuthContext);
     const desc = useRef();
@@ -18,44 +18,44 @@ const Share = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const newPost = {
-            userId: user._id,
-            desc: desc.current.value
-        }
 
-        let data;
+            const newPost = {
+                userId: user._id,
+                desc: desc.current.value
+            }
 
-        if (file) {
-            data = new FormData();
-            const filename = Date.now() + file.name;
-            data.append("name", filename);
-            data.append("file", file);
-            newPost.img = filename;
+            let data;
+
+            if (file) {
+                data = new FormData();
+                const filename = Date.now() + file.name;
+                data.append("name", filename);
+                data.append("file", file);
+                newPost.img = filename;
+
+                try {
+                    await axios.post("http://localhost:8080/api/upload", data);
+                    console.log(data);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
 
             try {
-                await axios.post("http://localhost:8080/api/upload", data);
-                console.log(data);
+                const res = await axios.post("http://localhost:8080/api/posts", newPost);
+                window
+                    .location
+                    .reload();
             } catch (error) {
                 console.log(error);
             }
-        }
-
-        try {
-            const res = await axios.post("http://localhost:8080/api/posts", newPost);
-            window
-                .location
-                .reload();
-        } catch (error) {
-            console.log(error);
-        }
-
         // if(file) {     const data = new FormData();     const fileName = Date.now() +
         // file.name;     data.append("file", file);     data.append("name", fileName);
-        //   newPost.img = fileName;     console.log(data)     try {         await
-        // axios.post("http://localhost:8080/api/upload", data); console.log(data);
-        // } catch (error) {         console.log(error);     } } try {     await
-        // axios.post("http://localhost:8080/api/posts", newPost);
-        // desc.current.value = ""; } catch (error) {     console.log(error); }
+        //  newPost.img = fileName;     console.log(data)     try {         await
+        // axios.post("http://localhost:8080/api/upload", data); console.log(data); }
+        // catch (error) {         console.log(error);     } } try {     await
+        // axios.post("http://localhost:8080/api/posts", newPost); desc.current.value =
+        // ""; } catch (error) {     console.log(error); }
 
     }
 
@@ -71,13 +71,16 @@ const Share = () => {
                         ref={desc}
                         type="text"
                         className="shareInput"
+                        value={edits?.desc}
                         placeholder={`What's in your mind ${user.username}?`}/>
                 </div>
-                <hr className="shareHr"/>
-                {file && (
+                <hr className="shareHr"/> {(file) && (
                     <div className="shareImgContainer">
-                        <img src={URL.createObjectURL(file)} className="shareImg" alt="" />
-                        <MdOutlineCancel size={30} className='shareCancelImg' onClick={() => setFile(null)} />
+                        <img src={URL.createObjectURL(file)} className="shareImg" alt=""/>
+                        <MdOutlineCancel
+                            size={30}
+                            className='shareCancelImg'
+                            onClick={() => setFile(null)}/>
                     </div>
                 )}
                 <form className="shareBottom" onSubmit={handleSubmit}>

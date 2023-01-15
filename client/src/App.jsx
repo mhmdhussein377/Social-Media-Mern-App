@@ -6,6 +6,7 @@ import {Routes, Route, Navigate} from "react-router-dom"
 import {useContext} from 'react'
 import {AuthContext} from './Context/AuthContext'
 import Likes from './components/Likes/Likes'
+import Comments from './components/comments/Comments'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
                     : <Register/>}/>
                 <Route path="profile/:username" element={< Profile />}/>
                 <Route path="post/:postId/likes" element={< Home />}/>
+                <Route path="post/:postIdComment/comments" element={< Home />}/>
             </Routes>
         </div>
     );

@@ -1,13 +1,7 @@
 import React from 'react';
 import BirthDayImage from "./../../assets/gift.png";
 import AdImage from "./../../assets/ad.png";
-import Person1 from "./../../assets/person/1.jpeg";
-import Person2 from "./../../assets/person/2.jpeg";
-import Person3 from "./../../assets/person/3.jpeg";
-import Person4 from "./../../assets/person/4.jpeg";
-import Person5 from "./../../assets/person/5.jpeg";
 import DefaultImg from "./../../assets/person/noAvatar.png"
-import {Users} from '../../DummyData';
 import "./Rightbar.css";
 import Online from '../Online/Online';
 import {useEffect} from 'react';
@@ -78,6 +72,7 @@ const Rightbar = ({profile, user}) => {
                 try {
                     const friendsList = await axios.get(`http://localhost:8080/api/users/friends/${user._id}`);
                     setFriends(friendsList.data);
+                    // filter((friend) => friend._id !== currentUser._id);
                 } catch (error) {
                     console.log(error);
                 }
